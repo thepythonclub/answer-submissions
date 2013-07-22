@@ -13,28 +13,27 @@ import json
   Solve challenge1 for The Python Club
 
   Version:  07/22/2013 - 1.0 - Initial release
+                       - 1.1 - Updated for clarity
 '''
 
-main = 'http://thepythonclub.org:8081/'
 
-
-def challenge1():
+def challenge(num):
+    main = 'http://thepythonclub.org:808' + num
     # Request Challenge1
-    url = main + 'challenge1'
+    url = main + '/challenge' + num
     r = requests.get(url)
-    print r.text
+    print 'Question:', r.text
 
     # Obtain the question and then base64 decode
     word = r.text.split('"')[1]
     answer = base64.b64decode(word)
-    print answer
+    print 'Solution:', answer
 
     # Submit answer
     payload = {'answer': answer}
     s = requests.post(url, data=json.dumps(payload))
 
-    print s.url
-    print s.text
+    print 'Response:', s.text
 
 if __name__ == "__main__":
-    challenge1()
+    challenge('1')
