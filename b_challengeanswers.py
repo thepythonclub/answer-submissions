@@ -4,17 +4,17 @@ import requests, base64, json, re, sys, os
 
 '''
   	Creator:		B-Dawg
-		Usage:			Solve Da Challenges
+	Usage:			Solve Da Challenges
 
-		Version Data:	
-						2013-07-18 - Challenge 1 Individual Function 
-						2013-07-18 - Challenge 2 Individual Function					
-						2013-07-19 - Challenge 3 Individual Function
-						2013-07-22 - Challenge 1v2 Individual Function
-						2013-07-22 - Challenge 2v2 Individual Function
-						2013-07-24 - Challenge 3v2 Individual Function
-						2013-07-25 - Built main and exit functions.
-									 Tidied a little of the code up.
+	Version Data:	
+				2013-07-18 - Challenge 1 Individual Function 
+				2013-07-18 - Challenge 2 Individual Function					
+				2013-07-19 - Challenge 3 Individual Function
+				2013-07-22 - Challenge 1v2 Individual Function
+				2013-07-22 - Challenge 2v2 Individual Function
+				2013-07-24 - Challenge 3v2 Individual Function
+				2013-07-25 - Built main and exit functions.
+  					     Tidied a little of the code up.
 '''
 
 	#TPC = The Python Club!
