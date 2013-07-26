@@ -3,18 +3,18 @@
 import requests, base64, json, re, sys, os
 
 '''
-  	Creator:		B-Dawg
-	Usage:			Solve Da Challenges
+		Creator:		B-Dawg
+		Usage:			Solve Da Challenges
 
-	Version Data:	
-				2013-07-18 - Challenge 1 Individual Function 
-				2013-07-18 - Challenge 2 Individual Function					
-				2013-07-19 - Challenge 3 Individual Function
-				2013-07-22 - Challenge 1v2 Individual Function
-				2013-07-22 - Challenge 2v2 Individual Function
-				2013-07-24 - Challenge 3v2 Individual Function
-				2013-07-25 - Built main and exit functions.
-  					     Tidied a little of the code up.
+		Version Data:	
+						2013-07-18 - Challenge 1 Individual Function 
+						2013-07-18 - Challenge 2 Individual Function					
+						2013-07-19 - Challenge 3 Individual Function
+						2013-07-22 - Challenge 1v2 Individual Function
+						2013-07-22 - Challenge 2v2 Individual Function
+						2013-07-24 - Challenge 3v2 Individual Function
+						2013-07-25 - Built main and exit functions.
+									 Tidied a little of the code up.
 '''
 
 	#TPC = The Python Club!
@@ -45,21 +45,14 @@ def challenge1():
 	return main()
 
 def challenge2():
-		#Dict for Words to Numbers: Zero through Ten
-	numbers = {
-		'one' : 1,'two' : 2,'three' : 3,'four' : 4,'five' : 5,
-		'six' : 6,'seven' : 7,'eight' : 8,'nine' : 9,'ten' : 10,
-	}
-		#Dict for Numebrs to Words: 0 through 30
-	nums = {
-		0:'zero',1:'one',2:'two',3:'three',4:'four',5:'five',
-		6:'six',7:'seven',8:'eight',9:'nine',10:'ten',11:'eleven',
-		12:'twelve',13:'thirteen',14:'fourteen',15:'fifteen',
-		16:'sixteen',17:'seventeen',18:'eighteen',19:'nineteen',
-		20:'twenty',21:'twenty-one',22:'twenty-two',23:'twenty-three',
-		24:'twenty-four',25:'twenty-five',26:'twenty-six',
-		27:'twenty-seven',28:'twenty-eight',29:'twenty-nine',30:'thirty',
-	}
+		
+		#Dict for Numbers to Words: 0 through 30
+	numbers = ['zero', 'one','two','three','four','five','six','seven','eight',
+		'nine','ten','eleven','twelve','thirteen','fourteen','fifteen',
+		'sixteen','seventeen','eighteen','nineteen','twenty','twenty-one',
+		'twenty-two','twenty-three','twenty-four','twenty-five','twenty-six',
+		'twenty-seven','twenty-eight','twenty-nine','thirty']
+
 		#Thief TPC challenge 2 page/challenge 'question'
 	response = requests.get(TPC+':8082/challenge2')
 		#Pull individual words from challenge question
@@ -70,33 +63,33 @@ def challenge2():
 	variables = [words[0], words[2], words[4]]
 	operators = [words[1], words[3]]
 		#Loop to translate assumed 'number words' to numerical number
-	var = []
+	integers = []
 	for i in variables:
-		var.append(numbers[i])
+		integers.append(numbers.index(i))
 	
 		#Two loops to evaluate first and second operator, respectively
 		#Loops make assumption that the only operators are plus and minus	
-	equation = 0
+	solution = 0
 	if operators[0] == 'plus':
-		equation = var[0] + var[1]
+		solution = integers[0] + integers[1]
 	elif operators[0] == 'minus':
-		equation = var[0] - var[1]
+		solution = integers[0] - integers[1]
 
 	if operators[1] == 'plus':
-		equation = equation + var[2]
+		solution = solution + integers[2]
 	elif operators[1] == 'minus':
-		equation = equation - var[2]
+		solution = solution - integers[2]
 
 		#Create dict & add URL data and translated numerical number to word
-	solution = {'answer':nums[equation]}
+	data = {'answer':numbers[solution]}
 
 		#Post answer to challenge2
-	post = requests.post(TPC+':8082/challenge2', data=json.dumps(solution))
+	post = requests.post(TPC+':8082/challenge2', data=json.dumps(data))
 		#Clarification
 	print 
 	print "\tChallenge 2:"
 	print response.text
-	print "Solution to equation : " + solution['answer'] + '\n'
+	print "Solution to equation : " + data['answer'] + '\n'
 	print "\tChallenge 2 Answer: "
 	print post.text
 
@@ -161,7 +154,7 @@ def main():
 		challenge2()
 	elif choice == '3':
 		challenge3()
-	elif choice == 'die!':
+	elif choice == 'die':
 		exit()
 	else:
 		print "Incorrect Selection - REBOOT!\n"
