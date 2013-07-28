@@ -12,3 +12,8 @@ How to Submit
 
 OR
 fork your solutions code branch into the github group
+    
+Cool Solutions
+---------------
+These are guaranteed to work:
+https://github.com/dissembledstar/pyclub_solutions
